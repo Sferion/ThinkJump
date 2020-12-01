@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace ThinkJump
 {
-    class PlayerSprite : Sprite
+    class MobSprite : Sprite
     {
         bool jumping, walking, falling, jumpIsPressed, attacking;
         const float jumpSpeed = 4f;
@@ -17,7 +17,7 @@ namespace ThinkJump
         public int lives = 3;
         SoundEffect jumpSound, bumpSound;
 
-        public PlayerSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation, SoundEffect newjumpSound, SoundEffect newbumpSound)
+        public MobSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation, SoundEffect newjumpSound, SoundEffect newbumpSound)
             : base(newSpriteSheet, newCollisionTxr, newLocation)
         {
             jumpSound = newjumpSound;
@@ -72,7 +72,6 @@ namespace ThinkJump
             animations[4].Add(new Rectangle(795, 50, 56, 63));
             animations[4].Add(new Rectangle(976, 50, 56, 63));
             animations[4].Add(new Rectangle(1157, 50, 56, 63));
-            animations[4].Add(new Rectangle(1157, 50, 56, 63));
 
             animations.Add(new List<Rectangle>());              // geting hit animations
             animations[5].Add(new Rectangle(39, 577, 48, 52));
@@ -119,7 +118,7 @@ namespace ThinkJump
             else if (jumpIsPressed && !jumping && !falling &&       //                  
                   !(keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Space)
                 || gamePadState.IsButtonDown(Buttons.A)))
-            {               
+            {
                 jumpIsPressed = false;
             }
 
@@ -152,7 +151,7 @@ namespace ThinkJump
                 attacking = true;
             }
 
-                if ((falling || jumping) && spriteVelocity.Y < 500f) spriteVelocity.Y += 5f * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if ((falling || jumping) && spriteVelocity.Y < 500f) spriteVelocity.Y += 5f * (float)gameTime.ElapsedGameTime.TotalSeconds;
             spritePos += spriteVelocity;
 
             bool hasCollided = false;
@@ -190,22 +189,20 @@ namespace ThinkJump
                 }
                 if (!hasCollided && walking) falling = true;
                 if (jumping && spriteVelocity.Y > 0)
-                {                    
+                {
                     jumping = false;
                     falling = true;
                 }
 
             }
-            if (attacking && currentFrame == 8) attacking = false;
-            
 
-            if (walking && Math.Abs(spriteVelocity.Y) < 0.3335) setAnim(1);
+            if (walking && Math.Abs(spriteVelocity.Y) < 0.35) setAnim(1);
             else if (falling) setAnim(3);
             else if (jumping) setAnim(2);
             else if (attacking) setAnim(4);
             else setAnim(0);
 
-         
+
         }
         public void ResetPlayer(Vector2 newPos)
         {

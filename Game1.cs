@@ -22,9 +22,9 @@ namespace ThinkJump
         PlayerSprite playerSprite;
         CoinSprite coinSprite;
 
-        PlatformSprite testPlatform;
 
         List<List<PlatformSprite>> levels = new List<List<PlatformSprite>>();
+        List<List<MobSprite>> mob = new List<List<MobSprite>>();
         List<Vector2> coins = new List<Vector2>();
 
 
@@ -103,8 +103,9 @@ namespace ThinkJump
             _spriteBatch.Draw(backgroundtxr, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);  //creating background
 
             playerSprite.Draw(_spriteBatch, gameTime);
-           // coinSprite.Draw(_spriteBatch, gameTime);
+            //coinSprite.Draw(_spriteBatch, gameTime);
             foreach (PlatformSprite platform in levels[levelNumber]) platform.Draw(_spriteBatch, gameTime);
+
 
             for (int i = 0; i < playerSprite.lives; i++) livesString += "p";
 
@@ -124,12 +125,16 @@ namespace ThinkJump
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(100, 300)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(70, 300)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(250, 300)));
-            coins.Add(new Vector2(200, 200));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(280, 300)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(310, 300)));
+            coins.Add(new Vector2(0, 0));
 
             levels.Add(new List<PlatformSprite>());
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(100, 350)));
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(200, 320)));
-            coins.Add(new Vector2(200, 200));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(130, 350)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(160, 350)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(200, 400)));
+            coins.Add(new Vector2(0, 0));
         }
     }
 }
