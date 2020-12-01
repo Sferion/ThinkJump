@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/fanfare.wav</File>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/HeartFont.spritefont</File>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/heroSprite.png</File>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/jump.wav</File>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/JumpThing_background.png</File>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/JumpThing_spriteSheet2.png</File>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/tap.wav</File>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/UiText.spritefont</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
