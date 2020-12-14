@@ -3,7 +3,7 @@
   <SourceFile>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/fanfare.wav</SourceFile>
   <SourceTime>2020-11-23T15:37:27.4283748+00:00</SourceTime>
   <DestFile>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/bin/DesktopGL/fanfare.xnb</DestFile>
-  <DestTime>2020-12-01T15:04:37.8310157+00:00</DestTime>
+  <DestTime>2020-12-07T14:50:10.194488+00:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

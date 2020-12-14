@@ -196,8 +196,7 @@ namespace ThinkJump
                 }
 
             }
-            if (attacking && currentFrame == 8) attacking = false;
-            
+                       
 
             if (walking && Math.Abs(spriteVelocity.Y) < 0.3335) setAnim(1);
             else if (falling) setAnim(3);
@@ -205,7 +204,8 @@ namespace ThinkJump
             else if (attacking) setAnim(4);
             else setAnim(0);
 
-         
+            if (attacking && currentFrame == 8) attacking = false;
+
         }
         public void ResetPlayer(Vector2 newPos)
         {
