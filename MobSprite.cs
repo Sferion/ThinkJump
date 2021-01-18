@@ -63,7 +63,7 @@ namespace ThinkJump
             animations[3].Add(new Rectangle(596, 6, 56, 52));
             animations[3].Add(new Rectangle(775, 6, 56, 52));         //to be worked on
 
-
+            isDead = false;
             jumping = false;
             walking = false;
             falling = true;
@@ -75,24 +75,25 @@ namespace ThinkJump
 
             if (patroleDirection)
             {
-                if (spritePos.X < (patroleLocetion2.X - (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds))) spritePos.X += walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;                
+                if (spritePos.X < (patroleLocetion2.X - (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds)))
+                {
+                    spritePos.X += walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    flipped = false;
+                }
                 else if (spritePos.X > (patroleLocetion2.X + (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds))) spritePos.X -= walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 else patroleDirection = !patroleDirection;
             }
             else
             {
                 if (spritePos.X < (patroleLocetion1.X - (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds))) spritePos.X += walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                else if (spritePos.X > (patroleLocetion1.X + (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds))) spritePos.X -= walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                else if (spritePos.X > (patroleLocetion1.X + (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds)))
+                {
+                    spritePos.X -= walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    flipped = true;
+                }
                 else patroleDirection = !patroleDirection;
             }
           
-
-
-           // if (walking && Math.Abs(spriteVelocity.Y) < 0.35) setAnim(1);
-           // else if (falling) setAnim(3);
-           // else if (jumping) setAnim(2);
-           // else if (attacking) setAnim(4);
-           // else
                 setAnim(0);
 
 

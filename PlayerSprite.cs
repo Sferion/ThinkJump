@@ -201,9 +201,12 @@ namespace ThinkJump
             {
                 if (checkCollision(mob))
                 {
-                    if (attacking == true) isDead = true;
-                    else                      
+                    if (attacking == true) mob.isDead = true;
+                    else
+                    {
+                        lives--;
                         ResetPlayer(new Vector2(50, 50));
+                    }
                 }
             }
 

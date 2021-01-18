@@ -77,7 +77,8 @@ namespace ThinkJump
 
             playerSprite.Update(gameTime, levels[levelNumber],mob[levelNumber]);
             foreach (MobSprite thisMob in mob[levelNumber])
-                thisMob.Update(gameTime);
+                if (thisMob.isDead == false)
+                    thisMob.Update(gameTime);
 
             if (playerSprite.spritePos.Y > screenSize.Y + 50)
             {
@@ -110,8 +111,12 @@ namespace ThinkJump
             _spriteBatch.Draw(backgroundtxr, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);  //creating background
 
             playerSprite.Draw(_spriteBatch, gameTime);                                                      //drawing player character
-            foreach (MobSprite thisMob in mob[levelNumber])
-                thisMob.Draw(_spriteBatch, gameTime);
+            
+            
+                foreach (MobSprite thisMob in mob[levelNumber])
+                    if (thisMob.isDead == false)
+                        thisMob.Draw(_spriteBatch, gameTime);
+            
             coinSprite.Draw(_spriteBatch, gameTime);
             foreach (PlatformSprite platform in levels[levelNumber]) platform.Draw(_spriteBatch, gameTime);           
 
