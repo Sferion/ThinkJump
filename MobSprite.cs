@@ -13,7 +13,7 @@ namespace ThinkJump
     {
         bool jumping, walking, falling, jumpIsPressed, attacking, patroleDirection;
         const float jumpSpeed = 4f;
-        const float walkSpeed = 100f;
+        const float walkSpeed = 50f;
         public int lives = 3;
         SoundEffect jumpSound, bumpSound;
         Vector2 patroleLocetion1, patroleLocetion2;
@@ -36,9 +36,9 @@ namespace ThinkJump
 
             animations.Add(new List<Rectangle>());              // idal animations
             animations[0].Add(new Rectangle(30, 19, 40, 50));
-            animations[0].Add(new Rectangle(128, 20, 40, 50));
-            animations[0].Add(new Rectangle(231, 19, 40, 50));
-            animations[0].Add(new Rectangle(330, 20, 40, 50));
+            animations[0].Add(new Rectangle(130, 20, 40, 50));
+            animations[0].Add(new Rectangle(227, 19, 40, 50));
+            animations[0].Add(new Rectangle(332, 20, 40, 50));
 
 
             animations.Add(new List<Rectangle>());            // runing animations          
@@ -62,7 +62,6 @@ namespace ThinkJump
             animations[3].Add(new Rectangle(416, 6, 56, 52));
             animations[3].Add(new Rectangle(596, 6, 56, 52));
             animations[3].Add(new Rectangle(775, 6, 56, 52));         //to be worked on
-       
 
 
             jumping = false;
@@ -76,7 +75,7 @@ namespace ThinkJump
 
             if (patroleDirection)
             {
-                if (spritePos.X < (patroleLocetion2.X - (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds))) spritePos.X += walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (spritePos.X < (patroleLocetion2.X - (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds))) spritePos.X += walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;                
                 else if (spritePos.X > (patroleLocetion2.X + (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds))) spritePos.X -= walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 else patroleDirection = !patroleDirection;
             }
@@ -86,12 +85,15 @@ namespace ThinkJump
                 else if (spritePos.X > (patroleLocetion1.X + (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds))) spritePos.X -= walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 else patroleDirection = !patroleDirection;
             }
+          
 
-            if (walking && Math.Abs(spriteVelocity.Y) < 0.35) setAnim(1);
-            else if (falling) setAnim(3);
-            else if (jumping) setAnim(2);
-            else if (attacking) setAnim(4);
-            else setAnim(0);
+
+           // if (walking && Math.Abs(spriteVelocity.Y) < 0.35) setAnim(1);
+           // else if (falling) setAnim(3);
+           // else if (jumping) setAnim(2);
+           // else if (attacking) setAnim(4);
+           // else
+                setAnim(0);
 
 
 

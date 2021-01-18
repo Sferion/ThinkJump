@@ -30,3 +30,4 @@ F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\Think
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\tap.xnb
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\mobSprite.xnb
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\ThinkJump_background.xnb
+F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\door.xnb

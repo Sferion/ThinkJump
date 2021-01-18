@@ -9,18 +9,17 @@ namespace ThinkJump
 {
     class CoinSprite : Sprite
     {
-        public CoinSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation)
-            : base(newSpriteSheet, newCollisionTxr, newLocation)
+        public CoinSprite(Texture2D doorTxr, Texture2D newCollisionTxr, Vector2 newLocation)
+            : base(doorTxr, newCollisionTxr, newLocation)
         {
             spriteOrigin = new Vector2(0.5f, 1f);
             isColliding = true;
+            //drawCollision = true;
 
             animations = new List<List<Rectangle>>();
             animations.Add(new List<Rectangle>());
-            animations[0].Add(new Rectangle(48, 48, 48, 48));
-            animations[0].Add(new Rectangle(96, 48, 48, 48));
-            animations[0].Add(new Rectangle(144, 48, 48, 48));
-            animations[0].Add(new Rectangle(96, 48, 48, 48));
+            animations[0].Add(new Rectangle(2, 2, 20, 25));
+
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ThinkJump
 {
     class PlayerSprite : Sprite
     {
-        bool jumping, walking, falling, jumpIsPressed, attacking;
+        bool jumping, walking, falling, jumpIsPressed, attacking;       
         const float jumpSpeed = 4f;
         const float walkSpeed = 100f;
         public int lives = 3;
@@ -91,7 +91,7 @@ namespace ThinkJump
             animations[6].Add(new Rectangle(1320, 687, 56, 52));
             animations[6].Add(new Rectangle(1504, 687, 56, 52));
             animations[6].Add(new Rectangle(1684, 687, 56, 52));
-
+            
 
             jumping = false;
             walking = false;
@@ -99,7 +99,7 @@ namespace ThinkJump
             jumpIsPressed = false;
         }
 
-        public void Update(GameTime gameTime, List<PlatformSprite> platforms)
+        public void Update(GameTime gameTime, List<PlatformSprite> platforms, List<MobSprite> mobs)
         {
             KeyboardState keyboardState = Keyboard.GetState();
             GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
@@ -197,6 +197,15 @@ namespace ThinkJump
 
             }
                        
+            foreach (MobSprite mob in mobs)                     // check collision agienst mob
+            {
+                if (checkCollision(mob))
+                {
+                    if (attacking == true) isDead = true;
+                    else                      
+                        ResetPlayer(new Vector2(50, 50));
+                }
+            }
 
             if (walking && Math.Abs(spriteVelocity.Y) < 0.3335) setAnim(1);
             else if (falling) setAnim(3);
@@ -204,7 +213,7 @@ namespace ThinkJump
             else if (attacking) setAnim(4);
             else setAnim(0);
 
-            if (attacking && currentFrame == 8) attacking = false;
+            if (attacking && currentFrame == 7) attacking = false;
 
         }
         public void ResetPlayer(Vector2 newPos)
