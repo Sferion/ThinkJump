@@ -18,7 +18,7 @@ namespace ThinkJump
 
             animations = new List<List<Rectangle>>();
             animations.Add(new List<Rectangle>());
-            animations[0].Add(new Rectangle(2, 2, 20, 25));
+            animations[0].Add(new Rectangle(5, 2, 60, 70));
 
         }
     }

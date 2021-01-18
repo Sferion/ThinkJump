@@ -31,3 +31,7 @@ F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\Think
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\mobSprite.xnb
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\ThinkJump_background.xnb
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\door.xnb
+F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\slash.xnb
+F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\ghostsound.xnb
+F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\grunt.xnb
+F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\music.xnb

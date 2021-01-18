@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/door.png</SourceFile>
-  <SourceTime>2021-01-18T10:07:01.9147828+00:00</SourceTime>
+  <SourceTime>2021-01-18T13:08:51.0632361+00:00</SourceTime>
   <DestFile>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/bin/DesktopGL/Content/door.xnb</DestFile>
-  <DestTime>2021-01-18T10:07:03.7102699+00:00</DestTime>
+  <DestTime>2021-01-18T14:21:26.8880757+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

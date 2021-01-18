@@ -15,13 +15,13 @@ namespace ThinkJump
         const float jumpSpeed = 4f;
         const float walkSpeed = 50f;
         public int lives = 3;
-        SoundEffect jumpSound, bumpSound;
+        SoundEffect ghostSound ;
         Vector2 patroleLocetion1, patroleLocetion2;
 
-        public MobSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation, Vector2 newPatrole, SoundEffect newjumpSound)
+        public MobSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation, Vector2 newPatrole, SoundEffect newghostSound)
             : base(newSpriteSheet, newCollisionTxr, newLocation)
         {
-            jumpSound = newjumpSound;
+            ghostSound = newghostSound;
             patroleLocetion1 = newLocation;
             patroleLocetion2 = newPatrole;
 
@@ -63,16 +63,11 @@ namespace ThinkJump
             animations[3].Add(new Rectangle(596, 6, 56, 52));
             animations[3].Add(new Rectangle(775, 6, 56, 52));         //to be worked on
 
-            isDead = false;
-            jumping = false;
-            walking = false;
-            falling = true;
-            jumpIsPressed = false;
         }
 
         public void Update(GameTime gameTime)
         {
-
+            
             if (patroleDirection)
             {
                 if (spritePos.X < (patroleLocetion2.X - (walkSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds)))

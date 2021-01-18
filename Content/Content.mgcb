@@ -31,6 +31,18 @@
 /processorParam:Quality=Best
 /build:fanfare.wav
 
+#begin ghostsound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:ghostsound.wav
+
+#begin grunt.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:grunt.wav
+
 #begin HeartFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -79,6 +91,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:mobSprite.png
+
+#begin music.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:music.wav
+
+#begin slash.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:slash.wav
 
 #begin tap.wav
 /importer:WavImporter

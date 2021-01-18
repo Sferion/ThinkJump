@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Audio;
+using System.Diagnostics;
 
 
 
@@ -15,11 +16,13 @@ namespace ThinkJump
         const float jumpSpeed = 4f;
         const float walkSpeed = 100f;
         public int lives = 3;
-        SoundEffect jumpSound, bumpSound;
+        SoundEffect jumpSound, bumpSound, slashSound, gruntSound;
 
-        public PlayerSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation, SoundEffect newjumpSound, SoundEffect newbumpSound)
+        public PlayerSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation, SoundEffect newjumpSound, SoundEffect newbumpSound, SoundEffect newslashSound, SoundEffect newgruntSound)
             : base(newSpriteSheet, newCollisionTxr, newLocation)
         {
+            gruntSound = newgruntSound;
+            slashSound = newslashSound;
             jumpSound = newjumpSound;
             bumpSound = newbumpSound;
 
@@ -64,7 +67,8 @@ namespace ThinkJump
             animations[3].Add(new Rectangle(390, 347, 48, 52));
             animations[3].Add(new Rectangle(569, 347, 48, 52));
 
-            animations.Add(new List<Rectangle>());              // attack animations 
+            
+            animations.Add(new List<Rectangle>());              // attack animations            
             animations[4].Add(new Rectangle(68, 50, 56, 63));
             animations[4].Add(new Rectangle(244, 50, 56, 63));
             animations[4].Add(new Rectangle(420, 50, 56, 63));                  //current work
@@ -145,11 +149,15 @@ namespace ThinkJump
             if (!jumpIsPressed && !jumping && !falling &&
                 (keyboardState.IsKeyDown(Keys.E) || keyboardState.IsKeyDown(Keys.LeftShift)))
             {
-                jumpIsPressed = false;
-                jumping = false;
-                walking = false;
-                falling = false;
-                attacking = true;
+                if (attacking == false)
+                {
+                    jumpIsPressed = false;
+                    jumping = false;
+                    walking = false;
+                    falling = false;
+                    attacking = true;
+                    slashSound.Play();
+                }
             }
 
                 if ((falling || jumping) && spriteVelocity.Y < 500f) spriteVelocity.Y += 5f * (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -160,8 +168,8 @@ namespace ThinkJump
             foreach (PlatformSprite platform in platforms)
             {
                 if (checkCollisionBelow(platform))
-                {
-                    bumpSound.Play();
+                {                   
+                    bumpSound.Play();                  
                     hasCollided = true;
                     while (checkCollision(platform)) spritePos.Y--;
                     spriteVelocity.Y = 0;
@@ -195,17 +203,17 @@ namespace ThinkJump
                     falling = true;
                 }
 
-            }
-                       
+            }        
             foreach (MobSprite mob in mobs)                     // check collision agienst mob
-            {
-                if (checkCollision(mob))
+            {               
+                if (!mob.isDead && checkCollision(mob))
                 {
-                    if (attacking == true) mob.isDead = true;
+                    if (attacking) mob.isDead = true;
                     else
                     {
+                        gruntSound.Play();
                         lives--;
-                        ResetPlayer(new Vector2(50, 50));
+                        //ResetPlayer(new Vector2(50, 50));
                     }
                 }
             }
@@ -220,7 +228,7 @@ namespace ThinkJump
 
         }
         public void ResetPlayer(Vector2 newPos)
-        {
+        {           
             spritePos = newPos;
             spriteVelocity = new Vector2();
             jumping = false;
