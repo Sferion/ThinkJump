@@ -104,6 +104,7 @@ namespace ThinkJump
                 levelNumber++;              
                 if (levelNumber >= levels.Count) levelNumber = 0;
                 coinSprite.spritePos = coins[levelNumber];
+
                 playerSprite.ResetPlayer(new Vector2(50, 50));
                 fanfareSound.Play();
             }
@@ -112,41 +113,47 @@ namespace ThinkJump
             {
                 
             }
-
+           
         }
 
 
         protected override void Draw(GameTime gameTime)
         {
+            
             if (playerSprite.lives > 0)
-            {
-                string livesString = "";
-                
-                _spriteBatch.Draw(backgroundtxr, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);  //creating background
-                playerSprite.Draw(_spriteBatch, gameTime);                                                      //drawing player character           
+            {                                
+                    string livesString = "";
 
-                foreach (MobSprite thisMob in mob[levelNumber])                                             //dawing mobs
-                    if (thisMob.isDead == false)
-                        thisMob.Draw(_spriteBatch, gameTime);
+                    _spriteBatch.Begin();
+                    _spriteBatch.Draw(backgroundtxr, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);  //creating background
+                    playerSprite.Draw(_spriteBatch, gameTime);                                                      //drawing player character           
 
-                coinSprite.Draw(_spriteBatch, gameTime);
-                foreach (PlatformSprite platform in levels[levelNumber]) platform.Draw(_spriteBatch, gameTime);
+                    foreach (MobSprite thisMob in mob[levelNumber])                                             //dawing mobs
+                        if (thisMob.isDead == false)
+                            thisMob.Draw(_spriteBatch, gameTime);
 
-                for (int i = 0; i < playerSprite.lives; i++) livesString += "p";                            //drawing lives on top of screen
+                    coinSprite.Draw(_spriteBatch, gameTime);
+                    foreach (PlatformSprite platform in levels[levelNumber]) platform.Draw(_spriteBatch, gameTime);
 
-                _spriteBatch.DrawString(heartFont, livesString, new Vector2(15, 10), Color.White);
+                    for (int i = 0; i < playerSprite.lives; i++) livesString += "p";                            //drawing lives on top of screen
 
-                uiTextFout.MeasureString("level " + levelNumber);
-                _spriteBatch.DrawString(uiTextFout, "level " + (levelNumber + 1), new Vector2(screenSize.X - 15 - uiTextFout.MeasureString("level " + levelNumber).X, 5), Color.White);
+                    _spriteBatch.DrawString(heartFont, livesString, new Vector2(15, 10), Color.White);
+
+                    uiTextFout.MeasureString("level " + levelNumber);
+                    _spriteBatch.DrawString(uiTextFout,
+                        "level " + 
+                        (levelNumber + 1),
+                        new Vector2(screenSize.X - 15 - uiTextFout.MeasureString("level " + levelNumber).X, 5),
+                        Color.White);                
             }
             else
-            {
-                _spriteBatch.Begin();
-                GraphicsDevice.Clear(Color.Black);
-                _spriteBatch.DrawString(uiTextFout, "Game Over", new Vector2(300, 200), Color.Red);
-            }
-
-
+            {                              
+                    _spriteBatch.Begin();
+                    GraphicsDevice.Clear(Color.Black);
+                    _spriteBatch.DrawString(uiTextFout, "Game Over", new Vector2(325, 200), Color.Red);
+                
+            }                   
+            
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -157,16 +164,24 @@ namespace ThinkJump
             //level 1
             backgroundMusic.Play();
             levels.Add(new List<PlatformSprite>());
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(100, 300)));
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(70, 300)));
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(120, 300)));
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(250, 300)));
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(280, 300)));
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(310, 300)));
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(340, 300)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(100, 200)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(70, 200)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(120, 200)));
 
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(355, 350)));
-            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(385, 350)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(220, 320)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(250, 320)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(280, 320)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(310, 320)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(340, 320)));
+
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(290, 180)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(320, 180)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(350, 180)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(380, 180)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(410, 180)));
+
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(390, 330)));
+            levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(420, 330)));
 
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(490, 260)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(520, 260)));
@@ -179,20 +194,22 @@ namespace ThinkJump
             coins.Add(new Vector2(700, 100));
 
             mob.Add(new List<MobSprite>());
-            mob[0].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(260, 335), new Vector2(350, 295), ghostSound));
-            
+            mob[0].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(210, 355), new Vector2(340, 355), ghostSound));
+            mob[0].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(265, 215), new Vector2(390, 215), ghostSound));
+
             //level 2
             levels.Add(new List<PlatformSprite>());
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(50, 100)));
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(80, 100)));
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(110, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(50, 400)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(80, 400)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(110, 400)));
             
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(610, 100)));
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(640, 100)));
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(660, 100)));
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(675, 100)));
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(690, 100)));
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(710, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(670, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(700, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(730, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(750, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(780, 100)));
 
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(140, 400)));
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(170, 400)));
@@ -222,14 +239,92 @@ namespace ThinkJump
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(560, 160)));
 
 
-            coins.Add(new Vector2(700, 100));           
+            coins.Add(new Vector2(740, 100));           
             mob.Add(new List<MobSprite>());
-            mob[1].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(630, 130), new Vector2(705, 130), jumpSound));
+            mob[1].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(480, 325), new Vector2(620, 325), jumpSound));
+            mob[1].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(630, 140), new Vector2(705, 140), jumpSound));
 
             //level 3
 
-            coins.Add(new Vector2(700, 420));
-            mob[1].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(630, 130), new Vector2(705, 130), jumpSound));
+            coins.Add(new Vector2(30, 150));
+            mob.Add(new List<MobSprite>());
+            mob[2].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(300, 120), new Vector2(620, 120), jumpSound));
+
+            levels.Add(new List<PlatformSprite>());
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 60)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 50)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 40)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 30)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 20)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 10)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 0)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(30, 0)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(60, 0)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 150)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(30, 150)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(60, 150)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(0, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(20, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(50, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(80, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(110, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(140, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(170, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(200, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(230, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(260, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(290, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(320, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(320, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(350, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(380, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(410, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(440, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(470, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(500, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(530, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(560, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(590, 70)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(620, 70)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(630, 330)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(660, 330)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(690, 330)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(720, 330)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(750, 330)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(780, 330)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(820, 330)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(820, 320)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(820, 310)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(820, 300)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(820, 290)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(510, 370)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(540, 370)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(450, 300)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(420, 300)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(380, 250)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(350, 250)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(300, 350)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(270, 350)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(220, 390)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(190, 390)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(140, 330)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(110, 330)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(40, 300)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(70, 300)));
+
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(120, 220)));
+            levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(150, 220)));
+
 
         }
     }
