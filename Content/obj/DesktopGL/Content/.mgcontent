@@ -5,6 +5,7 @@
   <Config />
   <SourceFiles>
     <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/door.png</File>
+    <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/endscreen.png</File>
     <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/fanfare.wav</File>
     <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/gateSound.wav</File>
     <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/ghostsound.wav</File>
@@ -21,6 +22,7 @@
     <File>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/UiText.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

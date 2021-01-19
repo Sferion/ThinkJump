@@ -12,7 +12,7 @@ namespace ThinkJump
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Texture2D backgroundtxr, playerSheetTxr, platformSheetTxr, whiteBox, mobSheetTxr, doorTxr;
+        Texture2D backgroundtxr, playerSheetTxr, platformSheetTxr, whiteBox, mobSheetTxr, doorTxr, endscreen;
         SpriteFont uiTextFout, heartFont;
         SoundEffect jumpSound, bumpSound, fanfareSound, slashSound, ghostSound, gruntSound, backgroundMusic;
 
@@ -63,6 +63,7 @@ namespace ThinkJump
             ghostSound = Content.Load<SoundEffect>("ghostsound");
             gruntSound = Content.Load<SoundEffect>("grunt");
             backgroundMusic = Content.Load<SoundEffect>("music");
+            endscreen = Content.Load<Texture2D>("endscreen");
 
 
             whiteBox = new Texture2D(GraphicsDevice, 1, 1);
@@ -113,7 +114,9 @@ namespace ThinkJump
             {
                 
             }
-           
+  
+
+
         }
 
 
@@ -153,7 +156,13 @@ namespace ThinkJump
                     _spriteBatch.DrawString(uiTextFout, "Game Over", new Vector2(325, 200), Color.Red);
                 
             }                   
-            
+            if (levelNumber >= 3)
+            {
+
+                _spriteBatch.Draw(endscreen, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);
+
+            }
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -325,7 +334,14 @@ namespace ThinkJump
             levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(120, 220)));
             levels[2].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(150, 220)));
 
+            //level 4?
 
+            coins.Add(new Vector2(300, 150));
+
+            mob.Add(new List<MobSprite>());
+            mob[3].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(300, 120), new Vector2(620, 120), jumpSound));
+            levels.Add(new List<PlatformSprite>());
+            levels[3].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(50, 80)));
         }
     }
 }

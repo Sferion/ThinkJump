@@ -36,3 +36,4 @@ F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\Think
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\grunt.xnb
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\music.xnb
 F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\gateSound.xnb
+F:\Clasess project\monogame projects\First game scraps\ThinkJump\ThinkJump\ThinkJump\bin\Debug\netcoreapp3.1\Content\endscreen.xnb
