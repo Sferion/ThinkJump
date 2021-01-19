@@ -16,11 +16,13 @@ namespace ThinkJump
         const float jumpSpeed = 4f;
         const float walkSpeed = 100f;
         public int lives = 3;
-        SoundEffect jumpSound, bumpSound, slashSound, gruntSound;
+        SoundEffect jumpSound, bumpSound, slashSound, gruntSound, ghostSound;
 
-        public PlayerSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation, SoundEffect newjumpSound, SoundEffect newbumpSound, SoundEffect newslashSound, SoundEffect newgruntSound)
+        public PlayerSprite(Texture2D newSpriteSheet, Texture2D newCollisionTxr, Vector2 newLocation,
+            SoundEffect newjumpSound, SoundEffect newbumpSound, SoundEffect newslashSound, SoundEffect newgruntSound, SoundEffect newGhostSound)
             : base(newSpriteSheet, newCollisionTxr, newLocation)
         {
+            ghostSound = newGhostSound;
             gruntSound = newgruntSound;
             slashSound = newslashSound;
             jumpSound = newjumpSound;
@@ -208,12 +210,16 @@ namespace ThinkJump
             {               
                 if (!mob.isDead && checkCollision(mob))
                 {
-                    if (attacking) mob.isDead = true;
+                    if (attacking)
+                    {
+                        ghostSound.Play();
+                        mob.isDead = true;
+                    }
                     else
                     {
                         gruntSound.Play();
                         lives--;
-                        //ResetPlayer(new Vector2(50, 50));
+                        ResetPlayer(new Vector2(50, 50));
                     }
                 }
             }

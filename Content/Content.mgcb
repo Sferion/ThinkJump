@@ -31,6 +31,18 @@
 /processorParam:Quality=Best
 /build:fanfare.wav
 
+#begin gateSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:gateSound.wav
+
+#begin gateSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:gateSound.wav
+
 #begin ghostsound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

@@ -3,7 +3,7 @@
   <SourceFile>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/music.wav</SourceFile>
   <SourceTime>2021-01-18T13:52:24.5267438+00:00</SourceTime>
   <DestFile>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/bin/DesktopGL/music.xnb</DestFile>
-  <DestTime>2021-01-18T14:22:58.6145052+00:00</DestTime>
+  <DestTime>2021-01-19T11:24:12.3910766+00:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

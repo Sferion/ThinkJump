@@ -3,7 +3,7 @@
   <SourceFile>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/ghostsound.wav</SourceFile>
   <SourceTime>2021-01-18T12:05:49.3017911+00:00</SourceTime>
   <DestFile>F:/Clasess project/monogame projects/First game scraps/ThinkJump/ThinkJump/ThinkJump/Content/bin/DesktopGL/ghostsound.xnb</DestFile>
-  <DestTime>2021-01-18T14:22:57.2499246+00:00</DestTime>
+  <DestTime>2021-01-19T11:24:10.8725339+00:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2020-08-10T16:17:54+01:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

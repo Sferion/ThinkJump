@@ -57,17 +57,18 @@ namespace ThinkJump
             heartFont = Content.Load<SpriteFont>("HeartFont");
             jumpSound = Content.Load<SoundEffect>("jump");
             bumpSound = Content.Load<SoundEffect>("tap");
-            fanfareSound = Content.Load<SoundEffect>("fanfare");
+            fanfareSound = Content.Load<SoundEffect>("gateSound");
             doorTxr = Content.Load<Texture2D>("door");
             slashSound = Content.Load<SoundEffect>("slash");
             ghostSound = Content.Load<SoundEffect>("ghostsound");
             gruntSound = Content.Load<SoundEffect>("grunt");
             backgroundMusic = Content.Load<SoundEffect>("music");
 
+
             whiteBox = new Texture2D(GraphicsDevice, 1, 1);
             whiteBox.SetData(new[] { Color.White });
 
-            playerSprite = new PlayerSprite(playerSheetTxr, whiteBox, new Vector2(50, 50), jumpSound, bumpSound, slashSound, gruntSound);
+            playerSprite = new PlayerSprite(playerSheetTxr, whiteBox, new Vector2(50, 50), jumpSound, bumpSound, slashSound, gruntSound, ghostSound);
             
             coinSprite = new CoinSprite(doorTxr, whiteBox, new Vector2(760, 300));
 
@@ -91,7 +92,7 @@ namespace ThinkJump
                 playerSprite.lives--;
                 if (playerSprite.lives <= 0)
                 {
-                    playerSprite.lives = 3;
+                    //playerSprite.lives = 3;
                     levelNumber = 0;
                 }
                 gruntSound.Play();
@@ -104,6 +105,7 @@ namespace ThinkJump
                 if (levelNumber >= levels.Count) levelNumber = 0;
                 coinSprite.spritePos = coins[levelNumber];
                 playerSprite.ResetPlayer(new Vector2(50, 50));
+                fanfareSound.Play();
             }
             base.Update(gameTime);
            if (playerSprite.lives <= 0)
@@ -116,30 +118,34 @@ namespace ThinkJump
 
         protected override void Draw(GameTime gameTime)
         {
-            string livesString = "";
-            _spriteBatch.Begin();
+            if (playerSprite.lives > 0)
+            {
+                string livesString = "";
+                
+                _spriteBatch.Draw(backgroundtxr, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);  //creating background
+                playerSprite.Draw(_spriteBatch, gameTime);                                                      //drawing player character           
 
-            _spriteBatch.Draw(backgroundtxr, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);  //creating background
-            playerSprite.Draw(_spriteBatch, gameTime);                                                      //drawing player character           
-            
                 foreach (MobSprite thisMob in mob[levelNumber])                                             //dawing mobs
                     if (thisMob.isDead == false)
                         thisMob.Draw(_spriteBatch, gameTime);
-            
-            coinSprite.Draw(_spriteBatch, gameTime);
-            foreach (PlatformSprite platform in levels[levelNumber]) platform.Draw(_spriteBatch, gameTime);           
 
-            for (int i = 0; i < playerSprite.lives; i++) livesString += "p";                            //drawing lives on top of screen
+                coinSprite.Draw(_spriteBatch, gameTime);
+                foreach (PlatformSprite platform in levels[levelNumber]) platform.Draw(_spriteBatch, gameTime);
 
-            _spriteBatch.DrawString(heartFont, livesString, new Vector2(15, 10), Color.White);              
+                for (int i = 0; i < playerSprite.lives; i++) livesString += "p";                            //drawing lives on top of screen
 
-            uiTextFout.MeasureString("level " + levelNumber);
-            _spriteBatch.DrawString(uiTextFout, "level " + (levelNumber + 1), new Vector2(screenSize.X - 15 - uiTextFout.MeasureString("level " + levelNumber).X, 5), Color.White);
+                _spriteBatch.DrawString(heartFont, livesString, new Vector2(15, 10), Color.White);
 
-            if (playerSprite.lives <= 0)
-            {
-                _spriteBatch.DrawString(uiTextFout, "You faild, Try agian", new Vector2(screenSize.X / 2, screenSize.Y / 2), Color.Black);
+                uiTextFout.MeasureString("level " + levelNumber);
+                _spriteBatch.DrawString(uiTextFout, "level " + (levelNumber + 1), new Vector2(screenSize.X - 15 - uiTextFout.MeasureString("level " + levelNumber).X, 5), Color.White);
             }
+            else
+            {
+                _spriteBatch.Begin();
+                GraphicsDevice.Clear(Color.Black);
+                _spriteBatch.DrawString(uiTextFout, "Game Over", new Vector2(300, 200), Color.Red);
+            }
+
 
             _spriteBatch.End();
 
@@ -148,6 +154,7 @@ namespace ThinkJump
 
         void BuildLevels()
         {
+            //level 1
             backgroundMusic.Play();
             levels.Add(new List<PlatformSprite>());
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(100, 300)));
@@ -157,11 +164,14 @@ namespace ThinkJump
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(280, 300)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(310, 300)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(340, 300)));
+
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(355, 350)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(385, 350)));
+
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(490, 260)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(520, 260)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(550, 260)));
+
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(750, 300)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(770, 300)));
             levels[0].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(790, 300)));
@@ -171,16 +181,56 @@ namespace ThinkJump
             mob.Add(new List<MobSprite>());
             mob[0].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(260, 335), new Vector2(350, 295), ghostSound));
             
-
+            //level 2
             levels.Add(new List<PlatformSprite>());
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(50, 100)));
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(80, 100)));
-            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(120, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(110, 100)));
+            
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(610, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(640, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(660, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(675, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(690, 100)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(710, 100)));
+
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(140, 400)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(170, 400)));
             levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(200, 400)));
+
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(250, 380)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(280, 380)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(310, 380)));
+
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(340, 340)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(370, 340)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(400, 340)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(430, 340)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(430, 340)));
+
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(490, 300)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(520, 300)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(550, 300)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(580, 300)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(610, 300)));
+
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(400, 230)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(370, 230)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(430, 230)));
+
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(530, 160)));
+            levels[1].Add(new PlatformSprite(platformSheetTxr, whiteBox, new Vector2(560, 160)));
+
 
             coins.Add(new Vector2(700, 100));           
             mob.Add(new List<MobSprite>());
-            //mob[1].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(275, 295), new Vector2(350, 295), jumpSound));
+            mob[1].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(630, 130), new Vector2(705, 130), jumpSound));
+
+            //level 3
+
+            coins.Add(new Vector2(700, 420));
+            mob[1].Add(new MobSprite(mobSheetTxr, whiteBox, new Vector2(630, 130), new Vector2(705, 130), jumpSound));
+
         }
     }
 }
