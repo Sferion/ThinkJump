@@ -73,31 +73,13 @@ namespace ThinkJump
             animations.Add(new List<Rectangle>());              // attack animations            
             animations[4].Add(new Rectangle(68, 50, 56, 63));
             animations[4].Add(new Rectangle(244, 50, 56, 63));
-            animations[4].Add(new Rectangle(420, 50, 56, 63));                  //current work
+            animations[4].Add(new Rectangle(420, 50, 56, 63));                  
             animations[4].Add(new Rectangle(614, 50, 56, 63));
             animations[4].Add(new Rectangle(795, 50, 56, 63));
             animations[4].Add(new Rectangle(976, 50, 56, 63));
             animations[4].Add(new Rectangle(1157, 50, 56, 63));
             animations[4].Add(new Rectangle(1157, 50, 56, 63));
 
-            animations.Add(new List<Rectangle>());              // geting hit animations
-            animations[5].Add(new Rectangle(39, 577, 48, 52));
-            animations[5].Add(new Rectangle(220, 577, 48, 52));
-            animations[5].Add(new Rectangle(394, 577, 48, 52));
-            animations[5].Add(new Rectangle(573, 577, 48, 52));
-
-            animations.Add(new List<Rectangle>());              // death animations
-            animations[6].Add(new Rectangle(53, 687, 48, 52));
-            animations[6].Add(new Rectangle(236, 687, 48, 52));
-            animations[6].Add(new Rectangle(416, 687, 56, 52));
-            animations[6].Add(new Rectangle(596, 687, 56, 52));
-            animations[6].Add(new Rectangle(775, 687, 56, 52));
-            animations[6].Add(new Rectangle(956, 687, 56, 52));
-            animations[6].Add(new Rectangle(1135, 687, 56, 52));
-            animations[6].Add(new Rectangle(1320, 687, 56, 52));
-            animations[6].Add(new Rectangle(1504, 687, 56, 52));
-            animations[6].Add(new Rectangle(1684, 687, 56, 52));
-            
 
             jumping = false;
             walking = false;
@@ -105,7 +87,7 @@ namespace ThinkJump
             jumpIsPressed = false;
         }
 
-        public void Update(GameTime gameTime, List<PlatformSprite> platforms, List<MobSprite> mobs)
+        public void Update(GameTime gameTime, List<PlatformSprite> platforms, List<MobSprite> mobs)  // setting up controlls
         {
             KeyboardState keyboardState = Keyboard.GetState();
             GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
@@ -224,7 +206,7 @@ namespace ThinkJump
                 }
             }
 
-            if (walking && Math.Abs(spriteVelocity.Y) < 0.3335) setAnim(1);
+            if (walking && Math.Abs(spriteVelocity.Y) < 0.3335) setAnim(1);  //decading on animation
             else if (falling) setAnim(3);
             else if (jumping) setAnim(2);
             else if (attacking) setAnim(4);
@@ -233,7 +215,7 @@ namespace ThinkJump
             if (attacking && currentFrame == 7) attacking = false;
 
         }
-        public void ResetPlayer(Vector2 newPos)
+        public void ResetPlayer(Vector2 newPos)   
         {           
             spritePos = newPos;
             spriteVelocity = new Vector2();

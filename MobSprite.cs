@@ -11,8 +11,7 @@ namespace ThinkJump
 {
     class MobSprite : Sprite
     {
-        bool jumping, walking, falling, jumpIsPressed, attacking, patroleDirection;
-        const float jumpSpeed = 4f;
+        bool patroleDirection;
         const float walkSpeed = 50f;
         public int lives = 3;
         SoundEffect ghostSound ;
@@ -39,29 +38,6 @@ namespace ThinkJump
             animations[0].Add(new Rectangle(130, 20, 40, 50));
             animations[0].Add(new Rectangle(227, 19, 40, 50));
             animations[0].Add(new Rectangle(332, 20, 40, 50));
-
-
-            animations.Add(new List<Rectangle>());            // runing animations          
-            animations[1].Add(new Rectangle(30, 19, 40, 50));
-            animations[1].Add(new Rectangle(128, 20, 40, 50));
-            animations[1].Add(new Rectangle(231, 19, 40, 50));
-            animations[1].Add(new Rectangle(330, 20, 40, 50));
-
-            animations.Add(new List<Rectangle>());              // attack animations 
-            animations[2].Add(new Rectangle(8, 94, 40, 50));
-            animations[2].Add(new Rectangle(104, 94, 40, 50));
-            animations[2].Add(new Rectangle(203, 94, 40, 50));
-            animations[2].Add(new Rectangle(310, 94, 40, 50));
-            animations[2].Add(new Rectangle(405, 94, 40, 50));
-            animations[2].Add(new Rectangle(502, 94, 40, 50));
-
-
-            animations.Add(new List<Rectangle>());              // death animations
-            animations[3].Add(new Rectangle(53, 6, 48, 52));
-            animations[3].Add(new Rectangle(236, 6, 48, 52));
-            animations[3].Add(new Rectangle(416, 6, 56, 52));
-            animations[3].Add(new Rectangle(596, 6, 56, 52));
-            animations[3].Add(new Rectangle(775, 6, 56, 52));         //to be worked on
 
         }
 

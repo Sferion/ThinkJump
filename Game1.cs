@@ -12,7 +12,7 @@ namespace ThinkJump
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Texture2D backgroundtxr, playerSheetTxr, platformSheetTxr, whiteBox, mobSheetTxr, doorTxr, endscreen;
+        Texture2D backgroundtxr, playerSheetTxr, platformSheetTxr, whiteBox, mobSheetTxr, doorTxr, endScreen;
         SpriteFont uiTextFout, heartFont;
         SoundEffect jumpSound, bumpSound, fanfareSound, slashSound, ghostSound, gruntSound, backgroundMusic;
 
@@ -63,7 +63,7 @@ namespace ThinkJump
             ghostSound = Content.Load<SoundEffect>("ghostsound");
             gruntSound = Content.Load<SoundEffect>("grunt");
             backgroundMusic = Content.Load<SoundEffect>("music");
-            endscreen = Content.Load<Texture2D>("endscreen");
+            endScreen = Content.Load<Texture2D>("endscreen");
 
 
             whiteBox = new Texture2D(GraphicsDevice, 1, 1);
@@ -158,9 +158,7 @@ namespace ThinkJump
             }                   
             if (levelNumber >= 3)
             {
-
-                _spriteBatch.Draw(endscreen, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);
-
+                _spriteBatch.Draw(endScreen, new Rectangle(0, 0, screenSize.X, screenSize.Y), Color.White);
             }
 
             _spriteBatch.End();
